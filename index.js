@@ -20,6 +20,8 @@ app.get("/", (req, res) => {
 app.listen(port, () =>{
     console.log("Servidor escuchando en http://localhost:" + port);
 });
+
+
 app.post("/enviar", (req, res) => {
     console.log(req.body);
 
@@ -41,6 +43,6 @@ app.post("/enviar", (req, res) => {
     }
 
     const promedio = (suma / totalCreditos).toFixed(2);
-    res.send(`Tu promedio es: ${promedio}`);
+    res.send(promedio);
 });
 

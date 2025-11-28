@@ -5,6 +5,7 @@
     <title>Calculadora de Promedio</title>
 </head>
 <body>
+    <a href="javascript:void(0)"></a> <!--Con esto hago que no se recargue la pagina-->
     <h1>Calculadora de Promedio</h1>
     <form id="formulario" action="/enviar" method="post">
         <table id="tablaNotas">
@@ -25,8 +26,24 @@
         <button type="button" onclick="agregarFila()">Agregar materia</button>
         <button type="submit">Enviar</button>
     </form>
+    <h1>Tu promedio es: </h1>
+    <div id="resultado"></div>
 
     <script>
+        const formulario = document.getElementById("formulario");
+        formulario.addEventListener("submit", function(event){
+            event.preventDefault(); 
+            fetch("/enviar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+            })
+            .then(response => response.text()) // recibir el promedio como texto
+            .then(promedio => {
+                // Mostrar el promedio en el div
+                document.getElementById("resultado").textContent = promedio;
+            })
+            .catch(error => console.error("Error:", error));
+        }); 
         function agregarFila() {
             const tabla = document.getElementById("tablaNotas");
             const fila = document.createElement("tr");
