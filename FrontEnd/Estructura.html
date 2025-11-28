@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculadora de Promedio</title>
+    </head>
+    <body>
+        <h1>Esto es una calculadora de promedio pensada para que puedas poner tus notas y mirar como vas en el semestre</h1>
+        <form action="/eliminar" method="post">
+            <label>Escribe tus materias</label>
+            <table>
+                <tr>
+                    <th>Materia</th>
+                    <th>Nota</th>
+                    <th>Creditos</th>
+                    <th>Eliminar</th>
+                </tr>
+                <tr>
+                    <td>
+                        <input name="materia" type="text">
+                    </td>
+                    <td>
+                        <input name="nota" type="number">
+                    </td>
+                    <td>
+                        <input name="creditos" type="number">
+                    </td>
+                    <td>
+                        <button type="button" onclick="eliminarFila(this)">-</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <form action="/agregar" method="post">
+            <label>¿Desea añadir otra materia? </label>
+            <button type="button" onclick="agregarFila()"></button>
+        </form>
+        <form action="/enviar" method="post">
+            <button type="submit">Enviar</button>
+        </form>
+        <script>
+            function agregarFila() {
+                const tabla = document.querySelector("table");
+                const numeroFilas = tabla.rows.length;
+                const fila = document.createElement("tr");  
+                if (numeroFilas > 1)
+                fila.innerHTML = `
+                    <td><input name="materia" type="text"></td>
+                    <td><input name="nota" type="number"></td>
+                    <td><input name="creditos" type="number"></td>
+                    <td><button type="button" onclick="eliminarFila(this)">-</button></td>
+                `;
+
+                tabla.appendChild(fila);
+            }
+
+            function eliminarFila(boton) {
+                const tabla = document.querySelector("table");
+                const numeroFilas = tabla.rows.length;
+                if(numeroFilas > 2 ){
+                    boton.parentElement.parentElement.remove();
+                }
+            }
+        </script>
+    </body>
+</html>
