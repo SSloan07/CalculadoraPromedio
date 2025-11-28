@@ -1,65 +1,50 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Calculadora de Promedio</title>
-    </head>
-    <body>
-        <h1>Esto es una calculadora de promedio pensada para que puedas poner tus notas y mirar como vas en el semestre</h1>
-        <form action="/eliminar" method="post">
-            <label>Escribe tus materias</label>
-            <table>
-                <tr>
-                    <th>Materia</th>
-                    <th>Nota</th>
-                    <th>Creditos</th>
-                    <th>Eliminar</th>
-                </tr>
-                <tr>
-                    <td>
-                        <input name="materia[]" type="text">
-                    </td>
-                    <td>
-                        <input name="nota[]" type="number" min="0" max="5" step="0.1">
-                    </td>
-                    <td>
-                        <input name="creditos[]" type="number">
-                    </td>
-                    <td>
-                        <button type="button" onclick="eliminarFila(this)">-</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-        <form action="/agregar" method="post">
-            <label>¿Desea añadir otra materia? </label>
-            <button type="button" onclick="agregarFila()"></button>
-        </form>
-        <form action="/enviar" method="post">
-            <button type="submit">Enviar</button>
-        </form>
-        <script>
-            function agregarFila() {
-                const tabla = document.querySelector("table");
-                const numeroFilas = tabla.rows.length;
-                const fila = document.createElement("tr");  
-                if (numeroFilas > 1)
-                fila.innerHTML = `
-                    <td><input name="materia[]" type="text"></td>
-                    <td><input name="nota[]" type="number" min="0" max="5" step="0.1"></td>
-                    <td><input name="creditos[]" type="number"></td>
-                    <td><button type="button" onclick="eliminarFila(this)">-</button></td>
-                `;
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Promedio</title>
+</head>
+<body>
+    <h1>Calculadora de Promedio</h1>
+    <form id="formulario" action="/enviar" method="post">
+        <table id="tablaNotas">
+            <tr>
+                <th>Materia</th>
+                <th>Nota</th>
+                <th>Créditos</th>
+                <th>Eliminar</th>
+            </tr>
+            <tr>
+                <td><input name="materia[]" type="text" required></td>
+                <td><input name="nota[]" type="number" min="0" max="5" step="0.1" required></td>
+                <td><input name="creditos[]" type="number" min="1" max="30" required></td>
+                <td><button type="button" onclick="eliminarFila(this)">-</button></td>
+            </tr>
+        </table>
 
-                tabla.appendChild(fila);
-            }
+        <button type="button" onclick="agregarFila()">Agregar materia</button>
+        <button type="submit">Enviar</button>
+    </form>
 
-            function eliminarFila(boton) {
-                const tabla = document.querySelector("table");
-                const numeroFilas = tabla.rows.length;
-                if(numeroFilas > 2 ){
-                    boton.parentElement.parentElement.remove();
-                }
+    <script>
+        function agregarFila() {
+            const tabla = document.getElementById("tablaNotas");
+            const fila = document.createElement("tr");
+            fila.innerHTML = `
+                <td><input name="materia[]" type="text" required></td>
+                <td><input name="nota[]" type="number" min="0" max="5" step="0.1" required></td>
+                <td><input name="creditos[]" type="number" min="1" max="30" required></td>
+                <td><button type="button" onclick="eliminarFila(this)">-</button></td>
+            `;
+            tabla.appendChild(fila);
+        }
+
+        function eliminarFila(boton) {
+            const tabla = document.getElementById("tablaNotas");
+            if(tabla.rows.length > 2) { 
+                boton.parentElement.parentElement.remove();
             }
-        </script>
-    </body>
+        }
+    </script>
+</body>
 </html>
