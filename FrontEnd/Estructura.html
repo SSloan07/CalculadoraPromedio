@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Calculadora de Promedio</title>
+    <link rel="stylesheet" href="Estilos.css">
 </head>
 <body>
-    <a href="javascript:void(0)"></a> <!--Con esto hago que no se recargue la pagina-->
     <h1>Calculadora de Promedio</h1>
-    <form id="formulario" action="/enviar" method="post">
+    <form id="formulario">
         <table id="tablaNotas">
             <tr>
                 <th>Materia</th>
@@ -16,41 +16,72 @@
                 <th>Eliminar</th>
             </tr>
             <tr>
-                <td><input name="materia[]" type="text" required></td>
-                <td><input name="nota[]" type="number" min="0" max="5" step="0.1" required></td>
-                <td><input name="creditos[]" type="number" min="1" max="30" required></td>
+                <td><input name="materia" type="text" required></td>
+                <td><input name="nota" type="number" min="0" max="5" step="0.1" required></td>
+                <td><input name="creditos" type="number"  min="1" max="30" required></td>
                 <td><button type="button" onclick="eliminarFila(this)">-</button></td>
             </tr>
         </table>
 
         <button type="button" onclick="agregarFila()">Agregar materia</button>
-        <button type="submit">Enviar</button>
+        <button type="submit">Calcular Promedio</button>
     </form>
     <h1>Tu promedio es: </h1>
     <div id="resultado"></div>
 
     <script>
         const formulario = document.getElementById("formulario");
-        formulario.addEventListener("submit", function(event){
+        
+        formulario.addEventListener("submit", async function(event){
             event.preventDefault(); 
-            fetch("/enviar", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-            })
-            .then(response => response.text()) // recibir el promedio como texto
-            .then(promedio => {
-                // Mostrar el promedio en el div
+            
+            console.log("=== INICIANDO ENVÍO ===");
+            
+            try {
+                // Convertir FormData a URLSearchParams
+                const formData = new FormData(formulario);
+                const urlParams = new URLSearchParams();
+                
+                for (let [key, value] of formData.entries()) {
+                    urlParams.append(key, value);
+                    console.log(`${key}: ${value} (tipo: ${typeof value})`);
+                    
+                }
+                
+                const response = await fetch("/enviar", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: urlParams
+                });
+
+                console.log("Status:", response.status);
+                console.log("OK?", response.ok);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Error del servidor: ${response.status} - ${errorText}`);
+                }
+
+                const promedio = await response.text();
+                console.log("Promedio recibido:", promedio);
                 document.getElementById("resultado").textContent = promedio;
-            })
-            .catch(error => console.error("Error:", error));
+                
+            } catch (error) {
+                console.error("Error completo:", error);
+                document.getElementById("resultado").textContent = "Error: " + error.message;
+                document.getElementById("resultado").style.color = "red";
+            }
         }); 
+
         function agregarFila() {
             const tabla = document.getElementById("tablaNotas");
             const fila = document.createElement("tr");
             fila.innerHTML = `
-                <td><input name="materia[]" type="text" required></td>
-                <td><input name="nota[]" type="number" min="0" max="5" step="0.1" required></td>
-                <td><input name="creditos[]" type="number" min="1" max="30" required></td>
+                <td><input name="materia" type="text" required></td>
+                <td><input name="nota" type="number" min="0" max="5" step="0.1" required></td>
+                <td><input name="creditos" type="number" min="1" max="30" required></td>
                 <td><button type="button" onclick="eliminarFila(this)">-</button></td>
             `;
             tabla.appendChild(fila);

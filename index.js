@@ -7,11 +7,7 @@ app.use(express.json());
 app.use(express.static("FrontEnd"));
 app.use(express.urlencoded({ extended: true }));
 
-let Notas = [
-    {Materia: "Calculo", Nota: 5, Creditos: 3},
-    {Materia: "NFI", Nota: 4, Creditos: 3}, 
-    {Materia: "Sistemas Operativos", Nota: 5, Creditos: 3}     
-];
+
 
 app.get("/", (req, res) => {
     return res.sendFile(path.join(__dirname, "FrontEnd", "Estructura.html"));
@@ -42,7 +38,8 @@ app.post("/enviar", (req, res) => {
         totalCreditos += credito;
     }
 
-    const promedio = (suma / totalCreditos).toFixed(2);
+    const promedio = (suma / totalCreditos);
+    console.log(promedio);
     res.send(promedio);
 });
 

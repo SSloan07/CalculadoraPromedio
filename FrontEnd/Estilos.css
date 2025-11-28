@@ -1,0 +1,508 @@
+/* Estilos generales - Fusión Tecnología e Historia */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'SF Pro Display', 'Georgia', sans-serif;
+}
+
+body {
+    background: 
+        linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><defs><pattern id="circuit" patternUnits="userSpaceOnUse" width="40" height="40"><circle cx="20" cy="20" r="1" fill="%2300d4ff" opacity="0.1"/><rect x="18" y="0" width="4" height="40" fill="%2300d4ff" opacity="0.05"/><rect x="0" y="18" width="40" height="4" fill="%2300d4ff" opacity="0.05"/></pattern></defs><rect width="200" height="200" fill="url(%23circuit)"/></svg>');
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Efecto de partículas flotantes */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(220, 20, 60, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Encabezado - Fusión Moderna y Clásica */
+h1 {
+    color: #ffffff;
+    text-align: center;
+    margin: 30px 0 40px 0;
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 30px 70px;
+    background: 
+        linear-gradient(135deg, 
+            rgba(0, 212, 255, 0.1) 0%, 
+            rgba(139, 69, 19, 0.1) 50%, 
+            rgba(220, 20, 60, 0.1) 100%),
+        rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 100px rgba(0, 212, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    backdrop-filter: blur(20px);
+    font-family: 'Inter', sans-serif;
+}
+
+h1::before, h1::after {
+    content: '◈';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: #00d4ff;
+    opacity: 0.8;
+    text-shadow: 0 0 20px #00d4ff;
+}
+
+h1::before {
+    left: 30px;
+}
+
+h1::after {
+    right: 30px;
+}
+
+/* Contenedor principal - Terminal Moderna */
+#formulario {
+    background: 
+        linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.05) 0%, 
+            rgba(255, 255, 255, 0.02) 100%),
+        rgba(26, 26, 46, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        0 0 100px rgba(0, 212, 255, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    padding: 45px;
+    width: 95%;
+    max-width: 1200px;
+    margin-bottom: 40px;
+    position: relative;
+    backdrop-filter: blur(25px);
+    overflow: hidden;
+}
+
+/* Efecto de borde luminoso */
+#formulario::before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, 
+        rgba(0, 212, 255, 0.2) 0%, 
+        transparent 30%,
+        transparent 70%, 
+        rgba(139, 69, 19, 0.2) 100%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Tabla de materias - Estilo Data Grid */
+#tablaNotas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 35px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#tablaNotas th {
+    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+    color: #0c0c0c;
+    padding: 25px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+    font-family: 'Inter', sans-serif;
+    position: relative;
+}
+
+#tablaNotas th::before {
+    content: '⟠';
+    position: absolute;
+    left: 20px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 1rem;
+}
+
+#tablaNotas tr {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#tablaNotas tr:hover {
+    background: linear-gradient(135deg, 
+        rgba(0, 212, 255, 0.1) 0%, 
+        rgba(139, 69, 19, 0.05) 100%);
+    transform: translateX(8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+#tablaNotas td {
+    padding: 22px;
+    color: #e0e0e0;
+    text-align: center;
+    font-family: 'SF Pro Display', monospace;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Campos de entrada - Terminal Style */
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 18px 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: #00d4ff;
+    font-family: 'SF Mono', 'Cascadia Code', monospace;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: #00d4ff;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 
+        0 0 0 3px rgba(0, 212, 255, 0.2),
+        inset 0 2px 10px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Botones principales - Estilo Ejecutivo */
+button {
+    padding: 18px 36px;
+    border: 2px solid;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+    transition: left 0.6s;
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+/* Botón Agregar Materia - Estilo Innovador */
+#formulario > button[type="button"] {
+    background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+    color: #0c0c0c;
+    border-color: #00d4ff;
+    margin-bottom: 25px;
+    width: auto;
+    padding: 18px 40px;
+    box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+}
+
+#formulario > button[type="button"]:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.4);
+    background: linear-gradient(135deg, #00e5ff 0%, #00aadd 100%);
+}
+
+/* Botón Calcular - Estilo Poder Ejecutivo */
+button[type="submit"] {
+    background: linear-gradient(135deg, #dc143c 0%, #a50c2a 100%);
+    color: #ffffff;
+    border-color: #dc143c;
+    padding: 18px 50px;
+    margin-right: 20px;
+    box-shadow: 0 10px 25px rgba(220, 20, 60, 0.3);
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(220, 20, 60, 0.4);
+    background: linear-gradient(135deg, #e62048 0%, #b51032 100%);
+}
+
+/* Botón Eliminar - Estilo Precisión */
+#tablaNotas button {
+    background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
+    color: #ffffff;
+    border: 2px solid #8b4513;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+}
+
+#tablaNotas button:hover {
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 12px 25px rgba(139, 69, 19, 0.5);
+    background: linear-gradient(135deg, #9c551d 0%, #765431 100%);
+}
+
+/* Contenedor de resultado - Centro de Mando */
+#resultado {
+    background: 
+        linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.05) 0%, 
+            rgba(255, 255, 255, 0.02) 100%),
+        rgba(26, 26, 46, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        0 0 100px rgba(0, 212, 255, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    padding: 50px;
+    width: 95%;
+    max-width: 1200px;
+    text-align: center;
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: #00d4ff;
+    margin-top: 20px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    backdrop-filter: blur(25px);
+    font-family: 'SF Pro Display', monospace;
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+}
+
+#resultado::before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, 
+        rgba(0, 212, 255, 0.1) 0%, 
+        transparent 50%,
+        rgba(220, 20, 60, 0.1) 100%);
+    pointer-events: none;
+}
+
+/* Efectos de animación sofisticados */
+@keyframes quantumFloat {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg); 
+    }
+    33% { 
+        transform: translateY(-10px) rotate(1deg); 
+    }
+    66% { 
+        transform: translateY(5px) rotate(-1deg); 
+    }
+}
+
+@keyframes dataStream {
+    0% { 
+        background-position: -200% 0;
+        opacity: 0;
+    }
+    50% { 
+        opacity: 1;
+    }
+    100% { 
+        background-position: 200% 0;
+        opacity: 0;
+    }
+}
+
+/* Efecto stream de datos en hover */
+#tablaNotas tr:hover {
+    background: 
+        linear-gradient(90deg, 
+            transparent, 
+            rgba(0, 212, 255, 0.1), 
+            transparent),
+        linear-gradient(135deg, 
+            rgba(0, 212, 255, 0.05) 0%, 
+            rgba(139, 69, 19, 0.02) 100%);
+    background-size: 200% 100%;
+    animation: dataStream 2s ease-in-out;
+}
+
+/* Responsive Design Ejecutivo */
+@media (max-width: 1200px) {
+    body {
+        padding: 30px 15px;
+    }
+    
+    h1 {
+        font-size: 2.8rem;
+        padding: 25px 50px;
+    }
+    
+    #formulario, #resultado {
+        width: 98%;
+        padding: 35px 30px;
+    }
+    
+    #resultado {
+        font-size: 3.5rem;
+        min-height: 160px;
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px 10px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+        padding: 20px 30px;
+        letter-spacing: 1px;
+    }
+    
+    h1::before,
+    h1::after {
+        font-size: 1.5rem;
+    }
+    
+    #formulario, #resultado {
+        width: 100%;
+        padding: 25px 20px;
+        border-radius: 20px;
+    }
+    
+    #tablaNotas th, #tablaNotas td {
+        padding: 18px 12px;
+        font-size: 1rem;
+    }
+    
+    button {
+        padding: 16px 28px;
+        font-size: 1rem;
+    }
+    
+    #resultado {
+        font-size: 2.8rem;
+        min-height: 140px;
+        padding: 30px 20px;
+    }
+}
+
+/* Animación del resultado - Revelación Ejecutiva */
+@keyframes executiveReveal {
+    0% { 
+        opacity: 0; 
+        transform: translateY(50px) scale(0.8);
+        filter: blur(20px);
+        text-shadow: 0 0 0 rgba(0, 212, 255, 0);
+    }
+    60% { 
+        opacity: 1;
+        transform: translateY(-15px) scale(1.1);
+        filter: blur(0);
+        text-shadow: 0 0 50px rgba(0, 212, 255, 0.8);
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+        text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+    }
+}
+
+#resultado {
+    animation: executiveReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Efectos de partículas en botones */
+button:hover {
+    animation: quantumFloat 0.6s ease;
+}
+
+/* Indicadores de estado */
+#resultado.excelente {
+    color: #00ff88;
+    text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+}
+
+#resultado.bueno {
+    color: #00d4ff;
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+}
+
+#resultado.regular {
+    color: #ffaa00;
+    text-shadow: 0 0 30px rgba(255, 170, 0, 0.5);
+}
+
+#resultado.bajo {
+    color: #dc143c;
+    text-shadow: 0 0 30px rgba(220, 20, 60, 0.5);
+}
